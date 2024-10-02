@@ -9,7 +9,7 @@ int main() {
 	srand(time(0));
 	int rand_values[15]{};
 	for (int i = 0; i < 15; i++) {
-		rand_values[i] = rand() % 15 - 5;
+		rand_values[i] = rand() % 16 - 5;
 	}
 	std::cout << "[";
 	for (int i = 0; i < 15; i++) {
