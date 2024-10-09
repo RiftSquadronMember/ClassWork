@@ -5,65 +5,47 @@
 #include <cstdlib>
 #include <ctime>
 
-void add(float a, float b) {
-	std::cout << a << " + " << b << " = " << a + b;
+const int num_array_size = 20;
+
+int random_values() {return rand() % 27 - 8;}
+
+
+int min_max_search(int num_array[num_array_size], char type_of) {
+	int min = num_array[0], max = num_array[0];
+	for (int i = 0; i < num_array_size; i++) {
+		if (num_array[i] > max) { max = num_array[i]; }
+		if (num_array[i] < min) { min = num_array[i]; }
+	}
+	if (type_of == '<') { return min; }
+	if (type_of == '>') { return max; }
 }
 
-void subtract(float a, float b) {
-	std::cout << a << " - " << b << " = " << a - b;
-}
-
-void divide(float a, float b) {
-	if (a == 0 || b == 0) {
-		std::cout << "Error, zero can't be divided\nor something can not be divided by zero";}
-	else {
-		std::cout << a << " / " << b << " = " << a / b;
+void array_out(int num_array[num_array_size]) {
+	for (int i = 0; i < num_array_size; i++) {
+		std::cout << num_array[i];
+		if (i < num_array_size - 1) { std::cout << ", "; }
 	}
 }
 
-void multiply(float a, float b) {
-	std::cout << a << " * " << b << " = " << a * b;
-}
 
 
 
-void percent(float a, float b) {
-	std::cout << a << " % - " << b << " = "<<  (a * (b / 100));
-}
 
 int main() {
-	float num_a = 0, num_b = 0;
-	char main_operator = ' ';
-	std::cout << "Enter the first value\n>>> ";
-	std::cin >> num_a;
-	system("cls");
-	do {
-		std::cout << "Enter the operator\n>>> ";
-		std::cout << num_a << " ";
-		std::cin >> main_operator;
-		system("cls");
-	} while (
-		main_operator != '+' && 
-		main_operator != '-' &&
-		main_operator != '/' &&
-		main_operator != '*' &&
-		main_operator != '%');
-
-	if (main_operator != '%') {
-		std::cout << "Enter the second value\n>>> ";
-	}
-	else{
-		std::cout << "Enter the percents of the first value[from 1 to 100]\n>>> ";
-	}
-	std::cout << num_a << " " << main_operator << " ";
-	std::cin >> num_b;
-	system("cls");
+	srand(time(0));
+	int num_array[num_array_size]{};
 	
+	for (int i = 0; i < num_array_size; i++) {
+		num_array[i] = random_values();
+	}
 
-	if (main_operator == '+') { add(num_a, num_b); }
-	else if (main_operator == '-') { subtract(num_a, num_b); }
-	else if (main_operator == '/') { divide(num_a, num_b); }
-	else if (main_operator == '*') { multiply(num_a, num_b); }
-	else if (main_operator == '%') { percent(num_a, num_b); }
+	array_out(num_array);
+
+	std::cout <<"\n\n minimum: " << min_max_search(num_array, '<');
+	std::cout << "\n maximum: " << min_max_search(num_array, '>');
+
+
 	std::cout << "\n\n\n";
+
+	return 0;
 }
