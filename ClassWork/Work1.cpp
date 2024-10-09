@@ -5,42 +5,65 @@
 #include <cstdlib>
 #include <ctime>
 
+void add(float a, float b) {
+	std::cout << a << " + " << b << " = " << a + b;
+}
+
+void subtract(float a, float b) {
+	std::cout << a << " - " << b << " = " << a - b;
+}
+
+void divide(float a, float b) {
+	if (a == 0 || b == 0) {
+		std::cout << "Error, zero can't be divided\nor something can not be divided by zero";}
+	else {
+		std::cout << a << " / " << b << " = " << a / b;
+	}
+}
+
+void multiply(float a, float b) {
+	std::cout << a << " * " << b << " = " << a * b;
+}
+
+
+
+void percent(float a, float b) {
+	std::cout << a << " % - " << b << " = "<<  (a * (b / 100));
+}
 
 int main() {
-	srand(time(0));
+	float num_a = 0, num_b = 0;
+	char main_operator = ' ';
+	std::cout << "Enter the first value\n>>> ";
+	std::cin >> num_a;
+	system("cls");
+	do {
+		std::cout << "Enter the operator\n>>> ";
+		std::cout << num_a << " ";
+		std::cin >> main_operator;
+		system("cls");
+	} while (
+		main_operator != '+' && 
+		main_operator != '-' &&
+		main_operator != '/' &&
+		main_operator != '*' &&
+		main_operator != '%');
 
-	int rand_values[10]{}, input_values[10]{}, goals = 0, value = -1;
+	if (main_operator != '%') {
+		std::cout << "Enter the second value\n>>> ";
+	}
+	else{
+		std::cout << "Enter the percents of the first value[from 1 to 100]\n>>> ";
+	}
+	std::cout << num_a << " " << main_operator << " ";
+	std::cin >> num_b;
+	system("cls");
+	
 
-	for (int i = 0; i < 10; i++) {
-		rand_values[i] = rand() % 11;
-	}
-	
-	
-	for (int i = 0; i < 10; i++) {
-		do {
-			std::cin >> input_values[i];
-			if (input_values[i] < 0 || input_values[i] > 10) {std::cout << "\nYou wrote the wrong value, it must be between 0 and 10 inclusive\n";}
-		} while (input_values[i] >= 0 || input_values[i] <= 10);
-	}
-	for (int i = 0; i < 10; i++) {
-		if (rand_values[i] == input_values[i]) {
-			goals += 1;
-		}
-	}
-	if (goals == 0) {
-		std::cout << "\nI'm sorry, all of them are wrong\n";
-	}
-	else if (goals == 1) {
-		std::cout << "\nCongrats! There's one coincidence, you won\n";
-	}
-	else if (goals == 2) {
-		std::cout << "\nYou got the big win! There's two coincidences!\n";
-	}
-	else if (goals == 3) {
-		std::cout << "\nThree matches! Jackpot!\n";
-	}
-	else {
-		std::cout << "\nMore than 3 matches! You are a monster!!\n";
-	}
-	return 0;
+	if (main_operator == '+') { add(num_a, num_b); }
+	else if (main_operator == '-') { subtract(num_a, num_b); }
+	else if (main_operator == '/') { divide(num_a, num_b); }
+	else if (main_operator == '*') { multiply(num_a, num_b); }
+	else if (main_operator == '%') { percent(num_a, num_b); }
+	std::cout << "\n\n\n";
 }
