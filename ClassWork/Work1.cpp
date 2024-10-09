@@ -7,10 +7,10 @@
 
 const int num_array_size = 20;
 
-int* random_values(int num_array[num_array_size]) {
+void random_values(int num_array[num_array_size]) {
 	for (int i = 0; i < num_array_size; i++) {
 		num_array[i] = rand() % 27 - 8;
-	}return num_array;}
+	}}
 
 
 int min_max_search(int num_array[num_array_size], char type_of) {
@@ -54,4 +54,3 @@ int main() {
 
 	return 0;
 }
-
