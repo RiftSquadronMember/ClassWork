@@ -7,7 +7,10 @@
 
 const int num_array_size = 20;
 
-int random_values() {return rand() % 27 - 8;}
+int* random_values(int num_array[num_array_size]) {
+	for (int i = 0; i < num_array_size; i++) {
+		num_array[i] = rand() % 27 - 8;
+	}return num_array;}
 
 
 int min_max_search(int num_array[num_array_size], char type_of) {
@@ -22,8 +25,12 @@ int min_max_search(int num_array[num_array_size], char type_of) {
 
 void array_out(int num_array[num_array_size]) {
 	for (int i = 0; i < num_array_size; i++) {
-		std::cout << num_array[i];
-		if (i < num_array_size - 1) { std::cout << ", "; }
+		std::cout << i << "\t";
+	}
+	std::cout << std::endl;
+	for (int i = 0; i < num_array_size; i++) {
+		std::cout << num_array[i] << "\t";
+		 
 	}
 }
 
@@ -35,9 +42,7 @@ int main() {
 	srand(time(0));
 	int num_array[num_array_size]{};
 	
-	for (int i = 0; i < num_array_size; i++) {
-		num_array[i] = random_values();
-	}
+	random_values(num_array);
 
 	array_out(num_array);
 
@@ -49,3 +54,4 @@ int main() {
 
 	return 0;
 }
+
