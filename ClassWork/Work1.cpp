@@ -4,53 +4,33 @@
 #include <random>
 #include <cstdlib>
 #include <ctime>
-
-const int num_array_size = 20;
-
-void random_values(int num_array[num_array_size]) {
-	for (int i = 0; i < num_array_size; i++) {
-		num_array[i] = rand() % 27 - 8;
-	}}
+#include <vector>
 
 
-int min_max_search(int num_array[num_array_size], char type_of) {
-	int min = num_array[0], max = num_array[0];
-	for (int i = 0; i < num_array_size; i++) {
-		if (num_array[i] > max) { max = num_array[i]; }
-		if (num_array[i] < min) { min = num_array[i]; }
+
+template <typename num_array, typename answr_type>
+
+int cout_arr(int size,  num_array array1[], answr_type num_type) {
+	num_type = 0;
+	float size_to_use = size;
+	std::cout << "\n\nArray: ";
+	for(int i = 0; i < size_to_use; i++){
+		std::cout << array1[i] << "   ";
+		num_type += array1[i];
 	}
-	if (type_of == '<') { return min; }
-	if (type_of == '>') { return max; }
+	std::cout << "\nMid_value: ";
+	return (num_type / size_to_use);
 }
-
-void array_out(int num_array[num_array_size]) {
-	for (int i = 0; i < num_array_size; i++) {
-		std::cout << i << "\t";
-	}
-	std::cout << std::endl;
-	for (int i = 0; i < num_array_size; i++) {
-		std::cout << num_array[i] << "\t";
-		 
-	}
-}
-
-
 
 
 
 int main() {
-	srand(time(0));
-	int num_array[num_array_size]{};
-	
-	random_values(num_array);
-
-	array_out(num_array);
-
-	std::cout <<"\n\n minimum: " << min_max_search(num_array, '<');
-	std::cout << "\n maximum: " << min_max_search(num_array, '>');
-
-
-	std::cout << "\n\n\n";
-
+	const int arr_size = 5;
+	int num_int[arr_size]{1,2,3,4,5};
+	float num_float[arr_size]{ 123.5f,83.8f,53.6f,23.3f,13.4f };
+	double num_double[arr_size]{ 123.5f,83.8f,53.6f,23.3f,13.4f };
+	std::cout << cout_arr(arr_size, num_int, num_int[0]);
+	std::cout << cout_arr(arr_size, num_float, num_float[0]);
+	std::cout << cout_arr(arr_size, num_double, num_double[0]);
 	return 0;
 }
